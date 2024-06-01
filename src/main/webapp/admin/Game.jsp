@@ -5,6 +5,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
     List<GameVo> games = (List<GameVo>) request.getAttribute("games");
+
     StadiumService stadiumService = new StadiumService();
     List<StadiumVo> stadiums = stadiumService.getAllStadium();
 %>
@@ -54,8 +55,6 @@
 </head>
 <body>
 <div class="container">
-
-
     <div id="sidebar">
         <ul class="menu">
             <li><a href="./member">회원 관리</a></li>
@@ -94,6 +93,7 @@
         <div>
             <button onclick="addGame()">게임 생성</button>
         </div>
+
         <table border="1" width="100%">
             <thead>
             <tr>

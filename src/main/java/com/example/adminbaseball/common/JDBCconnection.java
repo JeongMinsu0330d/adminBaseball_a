@@ -13,15 +13,11 @@ public class JDBCconnection {
     public JDBCconnection(){
         try{
             String msg ="";
-            String url = "jdbc:mysql://localhost:3306/baseballdb";
-            String user = "root";
-            String pwd = "";
-
+            String url = "jdbc:mysql://192.168.0.31:3306/baseballdb";
+            String user = "mncvc";
+            String pwd = "wjdalstn12@A";
             Class.forName("com.mysql.cj.jdbc.Driver");
-
-
             this.CBaseBallMaster = DriverManager.getConnection(url,user,pwd);
-
         }catch(Exception e){
             e.printStackTrace();
             System.out.println("Error");
