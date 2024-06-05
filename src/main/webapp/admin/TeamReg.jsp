@@ -1,10 +1,10 @@
-<%@ page import="com.example.adminbaseball.service.StadiumService" %>
+<%@ page import="com.example.adminbaseball.DAO.StadiumDAO" %>
 <%@ page import="com.example.adminbaseball.StadiumVo" %>
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 
 <%
-  StadiumService sDao = new StadiumService();
+  StadiumDAO sDao = new StadiumDAO();
   List<StadiumVo> stadiums = sDao.getAllStadium();
 
 %>

@@ -2,14 +2,12 @@ package com.example.adminbaseball.servlet;
 
 import com.example.adminbaseball.common.PriceListModel;
 import com.example.adminbaseball.models.StadiumPriceInfo;
-import com.example.adminbaseball.service.PriceInfoService;
+import com.example.adminbaseball.DAO.PriceInfoDAO;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,7 +18,7 @@ public class StadiumPriceInfoServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             int nStadiumNo = Integer.parseInt(request.getParameter("stadiumno"));
-            PriceInfoService priceInfoService = new PriceInfoService();
+            PriceInfoDAO priceInfoService = new PriceInfoDAO();
             System.out.println("ll: " + nStadiumNo);
             List<StadiumPriceInfo> priceInfos = priceInfoService.getAllPriceInfoToStadiumNo(nStadiumNo);
             Map<String, PriceListModel> rgStadiumPriceBoard = new LinkedHashMap<>();

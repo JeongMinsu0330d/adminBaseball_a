@@ -1,9 +1,9 @@
 <%@ page import="com.example.adminbaseball.StadiumVo" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
-<%@ page import="com.example.adminbaseball.service.StadiumService" %>
+<%@ page import="com.example.adminbaseball.DAO.StadiumDAO" %>
 <%@ page import="com.example.adminbaseball.TeamVo" %>
-<%@ page import="com.example.adminbaseball.service.TeamService" %><%--
+<%@ page import="com.example.adminbaseball.DAO.TeamDAO" %><%--
   Created by IntelliJ IDEA.
   User: jeongminsu
   Date: 4/14/24
@@ -13,8 +13,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%
-    StadiumService sDao = new StadiumService();
-    TeamService tDao = new TeamService();
+    StadiumDAO sDao = new StadiumDAO();
+    TeamDAO tDao = new TeamDAO();
 
     List<StadiumVo> stadiums = sDao.getAllStadium();
     List<TeamVo> teams = tDao.getAllTeam();

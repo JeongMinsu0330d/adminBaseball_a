@@ -1,12 +1,12 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.example.adminbaseball.models.GameVo" %>
 <%@ page import="com.example.adminbaseball.StadiumVo" %>
-<%@ page import="com.example.adminbaseball.service.StadiumService" %>
+<%@ page import="com.example.adminbaseball.DAO.StadiumDAO" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
     List<GameVo> games = (List<GameVo>) request.getAttribute("games");
 
-    StadiumService stadiumService = new StadiumService();
+    StadiumDAO stadiumService = new StadiumDAO();
     List<StadiumVo> stadiums = stadiumService.getAllStadium();
 %>
 <html>

@@ -3,7 +3,7 @@ package com.example.adminbaseball.servlet;
 import com.example.adminbaseball.StadiumVo;
 import com.example.adminbaseball.TeamVo;
 import com.example.adminbaseball.models.GameVo;
-import com.example.adminbaseball.service.GameService;
+import com.example.adminbaseball.DAO.GameDAO;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -58,7 +58,7 @@ public class AddGameServlet extends HttpServlet {
                 throw new Exception("팀 정보가 정확 하지 않습니다. 다시 확인해 주세요 !");
             }
             List<GameVo> games = new ArrayList<>();
-            GameService gameService = new GameService();
+            GameDAO gameService = new GameDAO();
 
             games = gameService.getAllGameListByDateAndTeam(gameDate,homeTeamNo,awayTeamNo);
 

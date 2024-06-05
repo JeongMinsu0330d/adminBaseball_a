@@ -1,4 +1,4 @@
-package com.example.adminbaseball.service;
+package com.example.adminbaseball.DAO;
 
 import com.example.adminbaseball.TeamVo;
 import com.example.adminbaseball.common.JDBCconnection;
@@ -7,9 +7,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TeamService extends JDBCconnection {
+public class TeamDAO extends JDBCconnection {
 
-    public TeamService(){
+    public TeamDAO(){
 
     }
 

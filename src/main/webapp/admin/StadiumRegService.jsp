@@ -91,12 +91,23 @@
 
         // 각 테이블 행을 순회하면서 데이터 수집
         let tableRows = document.querySelectorAll("table tr");
+
         for (let i = 1; i < tableRows.length; i++) { // 첫 번째 행은 헤더이므로 무시
             let row = tableRows[i];
             let sectionType = row.cells[0].querySelector("input[type='hidden']").value;
             let isAgeType = row.cells[1].querySelector("input[type='checkbox']").checked;
             let price1 = row.cells[2].querySelector("input[type='number']").value;
             let price2 = row.cells[3].querySelector("input[type='number']").value;
+
+            if(price1 < 5000){
+                alert("주중 최소 가격은 5000원 이상 부터 가능 합니다.");
+                return false;
+            }
+
+            if(price2 < 8000){
+                 alert("주말 최소 가격은 8000원 이상 부터 가능 합니다.");
+                return false;
+            }
 
             // 데이터 객체 생성 및 배열에 추가
             let rowData = {

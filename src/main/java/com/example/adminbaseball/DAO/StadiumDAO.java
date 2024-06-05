@@ -1,9 +1,8 @@
-package com.example.adminbaseball.service;
+package com.example.adminbaseball.DAO;
 
 import com.example.adminbaseball.StadiumVo;
 import com.example.adminbaseball.common.JDBCconnection;
 import com.example.adminbaseball.common.Section;
-import com.example.adminbaseball.common.Ticket;
 import com.example.adminbaseball.common.Value;
 
 import java.sql.SQLException;
@@ -11,9 +10,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StadiumService extends JDBCconnection {
+public class StadiumDAO extends JDBCconnection {
 
-    public StadiumService(){
+    public StadiumDAO(){
     }
 
     public List<StadiumVo> getAllStadium() throws SQLException {
@@ -38,11 +37,10 @@ public class StadiumService extends JDBCconnection {
     }
 
     public int createStadium(String strStadiumName, String pathStadiumImage) throws SQLException{
-        String qryInsertStadium = "INSERT INTO stadium_info(stadium_name,stadium_seat_image, admin_no) VALUES(?,?,0)";
+        String qryInsertStadium = "INSERT INTO stadium_info(stadium_name,stadium_seat_image, admin_no) VALUES (?,?,0)";
         int nStadiumNo =0;
         try {
             System.out.print(strStadiumName);
-            System.out.print(pathStadiumImage);
 
             psmt = CBaseBallMaster.prepareStatement(qryInsertStadium, Statement.RETURN_GENERATED_KEYS);
             psmt.setString(1, strStadiumName); // 경기장 명
@@ -60,15 +58,17 @@ public class StadiumService extends JDBCconnection {
 
         }catch(SQLException e){
             rollback();
+            System.out.print("here");
             e.printStackTrace();
         }
 
         return nStadiumNo;
     }
     public void setStadiumSeatInfo(int nStadiumNo, Section section, Value value){
-
-        String qryInsertStadiumSeatInfo = "INSERT INTO stadium_seat_list (stadium_no, section_type,section_no,  seat_col, seat_row, admin_no)" +
-                " VALUES (?,?,?,?,?,0)";
+        System.out.println(nStadiumNo);
+        System.out.println(Integer.parseInt(value.getSection_no()));
+        String qryInsertStadiumSeatInfo = "INSERT INTO stadium_seat_list (stadium_no, section_type,section_no,  seat_col, seat_row, admin_no) VALUES (?,?,?,?,?,0)";
+        System.out.println(qryInsertStadiumSeatInfo);
         try {
             psmt = CBaseBallMaster.prepareStatement(qryInsertStadiumSeatInfo);
             psmt.setInt(1,nStadiumNo);                                  // 경기장 번호
@@ -118,9 +118,11 @@ public class StadiumService extends JDBCconnection {
 
         }catch(SQLException e){
             try {
+                System.out.println("here1");
                 e.printStackTrace();
                 rollback();
             }catch(Exception e2){
+                System.out.println("here2");
                 e2.printStackTrace();
             }
         }

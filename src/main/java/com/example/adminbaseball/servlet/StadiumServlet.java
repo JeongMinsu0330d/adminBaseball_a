@@ -1,7 +1,7 @@
 package com.example.adminbaseball.servlet;
 
 import com.example.adminbaseball.StadiumVo;
-import com.example.adminbaseball.service.StadiumService;
+import com.example.adminbaseball.DAO.StadiumDAO;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -14,7 +14,7 @@ public class StadiumServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("menu","경기장 관리");
-        StadiumService sDao = new StadiumService();
+        StadiumDAO sDao = new StadiumDAO();
         try{
             List<StadiumVo> stadiums = sDao.getAllStadium();
             request.setAttribute("stadiums", stadiums);

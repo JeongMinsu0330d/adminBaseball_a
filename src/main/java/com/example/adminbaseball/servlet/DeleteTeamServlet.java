@@ -1,6 +1,6 @@
 package com.example.adminbaseball.servlet;
 
-import com.example.adminbaseball.service.TeamService;
+import com.example.adminbaseball.DAO.TeamDAO;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -16,7 +16,7 @@ public class DeleteTeamServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        TeamService teamService = new TeamService();
+        TeamDAO teamService = new TeamDAO();
         int nTeamNo = Integer.parseInt(request.getParameter("team_no"));
 
         try{

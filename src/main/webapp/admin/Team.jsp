@@ -1,10 +1,10 @@
 <%@ page import="com.example.adminbaseball.StadiumVo" %>
 <%@ page import="java.util.List" %>
-<%@ page import="com.example.adminbaseball.service.TeamService" %>
+<%@ page import="com.example.adminbaseball.DAO.TeamDAO" %>
 <%@ page import="com.example.adminbaseball.TeamVo" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
-  TeamService teamService = new TeamService();
+  TeamDAO teamService = new TeamDAO();
   List<TeamVo> teams = teamService.getAllTeam();
 
 %>

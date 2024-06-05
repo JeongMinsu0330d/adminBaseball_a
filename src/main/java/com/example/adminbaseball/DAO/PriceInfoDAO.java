@@ -1,4 +1,4 @@
-package com.example.adminbaseball.service;
+package com.example.adminbaseball.DAO;
 
 import com.example.adminbaseball.common.JDBCconnection;
 import com.example.adminbaseball.models.StadiumPriceInfo;
@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PriceInfoService extends JDBCconnection {
+public class PriceInfoDAO extends JDBCconnection {
 
     public List<StadiumPriceInfo> getAllPriceInfoToStadiumNo(int nStadiumNo){
         List<StadiumPriceInfo> priceInfos = new ArrayList<>();

@@ -1,7 +1,7 @@
 package com.example.adminbaseball.servlet;
 
 import com.example.adminbaseball.TeamVo;
-import com.example.adminbaseball.service.TeamService;
+import com.example.adminbaseball.DAO.TeamDAO;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -30,7 +30,7 @@ public class AddTeamServlet extends HttpServlet {
         int stadiumNo = Integer.parseInt(stadium[0]);
         String strStadiumName = stadium[1];
 
-        TeamService teamService = new TeamService();
+        TeamDAO teamService = new TeamDAO();
         TeamVo team = new TeamVo();
 
         team.setStrTeamName(teamName);

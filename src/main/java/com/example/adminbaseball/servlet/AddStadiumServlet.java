@@ -4,7 +4,7 @@ import com.example.adminbaseball.common.DataConverter;
 import com.example.adminbaseball.common.Section;
 import com.example.adminbaseball.common.Ticket;
 import com.example.adminbaseball.common.Value;
-import com.example.adminbaseball.service.StadiumService;
+import com.example.adminbaseball.DAO.StadiumDAO;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -26,7 +26,7 @@ public class AddStadiumServlet extends HttpServlet {
         Section[] sections = DataConverter.convertJsonToModel(request.getParameter("rgData[]"));
         Ticket[] tickets = DataConverter.convertJsonToModelToTicket(request.getParameter("rgPriceData[]"));
 
-        StadiumService stadiumService = new StadiumService();
+        StadiumDAO stadiumService = new StadiumDAO();
 
 //        경기장 생성
         String strStadiumName = request.getParameter("stadium_name");
@@ -45,17 +45,19 @@ public class AddStadiumServlet extends HttpServlet {
                 if (values.isEmpty()) {
                     continue; // 값이 없으면 다음 섹션으로 넘어감
                 }
+
                 for (Value value : values) {
 //                    경기장 좌석 정보 DB 저장.
                     stadiumService.setStadiumSeatInfo(nStadiumNo,section,value);
                 }
-
+                System.out.println("success_seat_info");
             }
 //        티켓 가격 생성. stadium_no, section_type 조회 > if(isAge) 권종 3개 생성 가격의 각 100%, 80%, 60%
             for(Ticket ticket: tickets){
                 int nWeekPrice = ticket.getPrice1();
                 int nWeekEndPrice = ticket.getPrice2();
                 if(ticket.isAgeType()){
+                    System.out.println(ticket.isAgeType());
                     String[] rgAgeType = {"a","b","c"};
                     for(int i = 0; i < 3; i++){
                         if(rgAgeType[i].equals("b")){

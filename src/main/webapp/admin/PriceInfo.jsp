@@ -8,6 +8,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
   int nStadiumNo = Integer.parseInt(request.getParameter("stadiumno"));
+
+
 %>
 
 
