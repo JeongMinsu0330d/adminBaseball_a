@@ -6,7 +6,6 @@
 <%
   StadiumDAO sDao = new StadiumDAO();
   List<StadiumVo> stadiums = sDao.getAllStadium();
-
 %>
 
 <html>

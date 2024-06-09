@@ -1,3 +1,7 @@
+<%@ page import="com.example.adminbaseball.DAO.ReservationDAO" %>
+<%@ page import="com.example.adminbaseball.models.ReservationVo" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
 
@@ -11,6 +15,12 @@
   }else{
     path="./admin/Member.jsp";
   }
+
+  List<ReservationVo> reservations = (List<ReservationVo>) request.getAttribute("reservationVoList");
+
+
+
+
 %>
 <html>
 <head>
@@ -80,11 +90,36 @@
   <div id="content" class="section">
     <%@ include file="../_layout/Header.jsp"%>
     <!-- 메뉴 클릭에 따른 내용은 이곳에 표시됩니다. -->
+    <h2>예매 관리 사이트</h2>
+     <table border="1" width="100%">
+        <thead>
+        <tr>
+          <th>거래 번호</th>
+          <th>회원 번호</th>
+          <th>경기장 명</th>
+          <th>홈 팀</th>
+          <th>어웨이 팀</th>
+          <th>결제 번호</th>
+          <th>경기 번호</th>
+          <th>경기 일정</th>
+          <th>총 티켓 가격</th>
+          <th>총 할인 가격</th>
+          <th>결제 방법</th>
+          <th>결제 금액</th>
+        </tr>
+        </thead>
 
+<%
+    if(reservations != null) { // 예매정보가 존재하지 않는 경우
+%>
+       <tr>
+          <td colspan='11'>회원정보가 존재 하지 않습니다.</td>
+      </tr>
+<%
+    }
+%>
 
-
-
-
+        <tbody>
 
 
 

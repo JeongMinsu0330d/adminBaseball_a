@@ -21,7 +21,7 @@
 </style>
 <body>
     <div class="container">
-        <form action="#" method="POST" name="fileForm" enctype="multipart/form-data">
+        <form action="upload.do" method="POST" name="fileForm" enctype="multipart/form-data">
             <label>이미지 첨부</label>
             <input type="file" name="attachedFile">
             <input type="submit" value="확인">

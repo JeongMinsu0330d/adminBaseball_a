@@ -69,12 +69,10 @@
                 <li><a href="./coupon">쿠폰 관리</a></li>
             </ul>
         </div>
-
         <div id="content" class="section">
             <%@ include file="_layout/Header.jsp"%>
             <!-- 메뉴 클릭에 따른 내용은 이곳에 표시됩니다. -->
         </div>
-
 </div>
 <script>
     // 페이지 로드 시 현재 URL에서 파라미터를 읽어와서 해당 메뉴 버튼에 active 클래스를 추가
