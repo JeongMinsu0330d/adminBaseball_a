@@ -1,5 +1,7 @@
 package com.example.adminbaseball.servlet;
 
+import com.example.adminbaseball.DAO.StadiumDAO;
+import com.example.adminbaseball.DAO.TeamDAO;
 import com.example.adminbaseball.StadiumVo;
 import com.example.adminbaseball.TeamVo;
 import com.example.adminbaseball.models.GameVo;
@@ -26,14 +28,6 @@ public class AddGameServlet extends HttpServlet {
         String message;
         try{
 
-
-            /**
-             * ds
- *  그 날 경기 중인 팀이 존재 하는가 체크
- *  그 날 경기장을 이미 사용 하고 있는가 체크
- *  동일 한 팀이 경기를 하고 있는가
- *
-  */
 // 정합성 검사 & 변수 세팅
             if(request.getParameter("home_team") == null || request.getParameter("home_team") == ""){
                 throw new NullPointerException("입력 정보가 정확하지 않습니다. 다시 입력 해주세요!");
@@ -50,37 +44,63 @@ public class AddGameServlet extends HttpServlet {
 
             int homeTeamNo = Integer.parseInt(request.getParameter("home_team"));
             int awayTeamNo = Integer.parseInt(request.getParameter("away_team"));
-            String gameDate = request.getParameter("game_date");
+            String gameDate = request.getParameter("game_date")+" 12:00:00";
             int stadiumNo = Integer.parseInt(request.getParameter("stadium"));
+
+            System.out.println(gameDate);
 
 //  경기 생성 가능 여부 체크
             if(homeTeamNo == awayTeamNo){
                 throw new Exception("팀 정보가 정확 하지 않습니다. 다시 확인해 주세요 !");
             }
             List<GameVo> games = new ArrayList<>();
+            GameVo game = new GameVo();
+
             GameDAO gameService = new GameDAO();
+            TeamDAO teamService = new TeamDAO();
+            StadiumDAO stadiumService = new StadiumDAO();
 
             games = gameService.getAllGameListByDateAndTeam(gameDate,homeTeamNo,awayTeamNo);
 
-            if(games.get(1) != null){
-                
+            if(games.size() > 0){
+                throw new Exception("경기일정을 변경해주세요!");
             }
-
-
 
 //  팀정보 가져오기
             TeamVo homeTeamInfo = new TeamVo();
             TeamVo awayTeamInfo = new TeamVo();
 
+           homeTeamInfo =  teamService.getTeamNameByTeamNo(homeTeamNo);
+           awayTeamInfo =  teamService.getTeamNameByTeamNo(awayTeamNo);
 
 //  경기장 정보 가져오기
-            StadiumVo stadiumInfo = new StadiumVo();
+            StadiumVo stadiumInfo = stadiumService.getStadiumInfoByStadiumNo(stadiumNo);
+
+
+            //            play_date,stadium_no,stadium_name, home_team_no, home_team_name, away_team_no, away_team_name
+            game.setDtPlayDate(gameDate);
+            game.setnStadiumNo(stadiumInfo.getnStadiumNo());
+            game.setStrStadiumName(stadiumInfo.getStrStadiumName());
+            game.setnHomeTeamNo(homeTeamInfo.getnTeamNo());
+            game.setStrHomeTeamName(homeTeamInfo.getStrTeamName());
+            game.setnAwayTeamNo(awayTeamInfo.getnTeamNo());
+            game.setStrAwayTeamName(awayTeamInfo.getStrTeamName());
+
+            System.out.println(game.getnHomeTeamNo());
+            System.out.println(game.getnAwayTeamNo());
+            System.out.println(game.getnStadiumNo());
+            System.out.println(game.getDtRegDate());
+
 
 //  경기 생성 하기
+            boolean isCreateGame = gameService.setGameList(game);
+            if(!isCreateGame){
+                System.out.println("error");
+            }
 
-
-            request.getRequestDispatcher("../admin/Empty.jsp").forward(request,response);
-
+            message = "경기 생성 완료 되었습니다.";
+            request.setAttribute("message",message);
+            request.getRequestDispatcher("../_layout/PopUpMessagePage.jsp").forward(request,response);
         }catch(NullPointerException nullPointerException){
             nullPointerException.printStackTrace();
             message = nullPointerException.getMessage();

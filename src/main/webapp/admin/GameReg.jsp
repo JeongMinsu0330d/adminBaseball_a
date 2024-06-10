@@ -26,7 +26,7 @@
 </head>
 <body>
 <h1>경기 생성</h1>
-<form action="" method="post" id="form_add">
+<form action="${pageContext.request.contextPath}/game/create" method="post" id="form_add">
     <table border="1">
         <tr>
             <th>이름</th>

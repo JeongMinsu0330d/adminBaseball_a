@@ -8,6 +8,9 @@
 
     StadiumDAO stadiumService = new StadiumDAO();
     List<StadiumVo> stadiums = stadiumService.getAllStadium();
+
+
+
 %>
 <html>
 <head>
@@ -116,7 +119,7 @@
                 <td> <%= game.getStrStadiumName()%></td>
                 <td> <%= game.getDtPlayDate()%></td>
                 <td> <%= game.getStrHomeTeamName()%></td>
-                <td> <%= game.getStrHomeTeamName()%></td>
+                <td> <%= game.getStrAwayTeamName()%></td>
                 <td> <%= game.getDtRegDate()%></td>
             </tr>
             <%

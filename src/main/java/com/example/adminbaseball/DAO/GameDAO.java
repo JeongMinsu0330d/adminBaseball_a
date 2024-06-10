@@ -44,10 +44,11 @@ public class GameDAO extends JDBCconnection {
         List<GameVo> games = new ArrayList<>();
 
         String query = "SELECT * FROM baseball_game_list WHERE play_date = ";
-        query += "'" + gameDate + " 12:00:00' " ;
+        query += "'" + gameDate + "'" ;
         query += "AND home_team_no IN ( "+ homeTeam +"," +  awayTeam  + ") OR away_team_name IN ( "+ homeTeam +"," +  awayTeam  + ");";
 
         psmt = CBaseBallMaster.prepareStatement(query);
+        System.out.println(query);
         rs = psmt.executeQuery();
 
         while(rs.next()){
@@ -64,10 +65,25 @@ public class GameDAO extends JDBCconnection {
 
             games.add(game);
         }
-
         return games;
     }
+    public boolean setGameList(GameVo game) throws SQLException{
+        String qryInsertGame = "INSERT INTO baseball_game_list (play_date,stadium_no,stadium_name, home_team_no, home_team_name, away_team_no, away_team_name, caution_contents)" +
+                " VALUES (?,?,?,?,?,?,?,?)";
+        psmt = CBaseBallMaster.prepareStatement(qryInsertGame);
+        psmt.setString(1,game.getDtPlayDate());
+        psmt.setInt(2,game.getnStadiumNo());
+        psmt.setString(3,game.getStrStadiumName());
+        psmt.setInt(4,game.getnHomeTeamNo());
+        psmt.setString(5,game.getStrHomeTeamName());
+        psmt.setInt(6,game.getnAwayTeamNo());
+        psmt.setString(7,game.getStrAwayTeamName());
+        psmt.setString(8,"");
+
+        psmt.executeUpdate();
 
 
+        return true;
+    }
 
 }

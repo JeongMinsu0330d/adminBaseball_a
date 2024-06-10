@@ -93,19 +93,20 @@
     <h2>예매 관리 사이트</h2>
      <table border="1" width="100%">
         <thead>
+        <%-- seq, 예매 날짜, 구분, 경기명, 거래번호, 결제 수단, 수수료, 할인쿠폰, 포인트, 정가 , 구매가격--%>
         <tr>
-          <th>거래 번호</th>
-          <th>회원 번호</th>
-          <th>경기장 명</th>
-          <th>홈 팀</th>
-          <th>어웨이 팀</th>
-          <th>결제 번호</th>
-          <th>경기 번호</th>
-          <th>경기 일정</th>
-          <th>총 티켓 가격</th>
-          <th>총 할인 가격</th>
-          <th>결제 방법</th>
-          <th>결제 금액</th>
+          <th>NO</th>
+          <th>날짜</th>
+          <th>회원번호</th>
+          <th>구 분</th>
+          <th>경기 명</th>
+          <th>예약 번호</th>
+          <th>결제수단</th>
+          <th>수수료</th>
+          <th>할인쿠폰</th>
+          <th>포인트</th>
+          <th>정 가</th>
+          <th>총 결제 금액</th>
         </tr>
         </thead>
 
@@ -119,7 +120,24 @@
     }
 %>
 
-        <tbody>
+<%
+      for(int i = 0; i < reservations.size(); i++){
+        ReservationVo reservation = reservations.get(i);
+%>
+<%-- seq, 예매 날짜, 구분, 경기명, 거래번호, 결제 수단, 수수료, 할인쿠폰, 포인트, 정가 , 구매가격--%>
+        <tr>
+         <td><%=reservation.getTradeId()%></td>
+
+
+
+
+        </tr>
+<%
+      }
+%>
+
+
+
 
 
 

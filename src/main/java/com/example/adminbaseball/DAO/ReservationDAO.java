@@ -12,7 +12,9 @@ import java.util.List;
 public class ReservationDAO extends JDBCconnection {
     public List<ReservationVo> getAllReservation() throws SQLException {
         List<ReservationVo> reservations = new ArrayList<>();
-        String qrySelectReservation = "SELECT trade_id, user_no, game_list_seq, stadium_no, stadium_name, home_team_no, home_team_name, away_team_no, away_team_name, payment_method, reservation_state, reservation_price, reg_date FROM baseball_reservation_list";
+        String qrySelectReservation = "SELECT trade_id, user_no, game_list_seq, stadium_no, stadium_name, home_team_no, home_team_name, away_team_no, away_team_name, payment_method, reservation_state, reservation_price, reg_date FROM baseball_reservation_list LEFT JOIN";
+//    SELECT a.reg_date, a.user_no, a.reservation_state, a.trade_id, a.game_list_seq, a.payment_method, SUM(b.total_price), SUM(b.discount_price), SUM(b.ticket_price) FROM baseball_reservation_list as a LEFT JOIN baseball_reservation_detail_list as b USING(trade_id);
+// 수수료 추가,
 
         psmt = CBaseBallMaster.prepareStatement(qrySelectReservation);
         rs = psmt.executeQuery();

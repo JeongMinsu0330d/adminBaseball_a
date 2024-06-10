@@ -14,7 +14,23 @@ public class StadiumDAO extends JDBCconnection {
 
     public StadiumDAO(){
     }
+    public StadiumVo getStadiumInfoByStadiumNo(int stadiumNo) throws SQLException {
+        StadiumVo stadium = new StadiumVo();
 
+        String qrySelectStadium = "SELECT stadium_no, stadium_name FROM stadium_info WHERE stadium_no = ?";
+        psmt=CBaseBallMaster.prepareStatement(qrySelectStadium);
+        psmt.setInt(1,stadiumNo);
+        rs = psmt.executeQuery();
+        while(rs.next()){
+
+            int nStadiumNo = rs.getInt("stadium_no");
+            String strStadiumName = rs.getString("stadium_name");
+            stadium = new StadiumVo(nStadiumNo, strStadiumName);
+        }
+
+
+        return stadium;
+    }
     public List<StadiumVo> getAllStadium() throws SQLException {
         List<StadiumVo> stadiums = new ArrayList<>();
 

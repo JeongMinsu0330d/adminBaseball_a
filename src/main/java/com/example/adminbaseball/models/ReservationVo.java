@@ -1,6 +1,7 @@
 package com.example.adminbaseball.models;
 
 import java.util.Date;
+import java.util.List;
 
 public class ReservationVo {
     private int tradeId;
@@ -14,6 +15,7 @@ public class ReservationVo {
     private int awayTeamNo;
     private String paymentMethod;
     private char reservationState;
+    private String reservationStateKor;
     private int reservationPrice;
     private String successDate;
     private String cancelDate;
@@ -29,7 +31,7 @@ public class ReservationVo {
     private String paymentAgreePrivateInfoSaveDate;
     private int adminNo;
     private String regDate;
-
+    private List<ReservationDetailVo> reservationDetailVoList;
     public ReservationVo() {
     }
 
@@ -46,6 +48,45 @@ public class ReservationVo {
         this.paymentMethod = paymentMethod;
         this.reservationState = reservationState;
         this.reservationPrice = reservationPrice;
+    }
+
+    public ReservationVo(int tradeId, int userNo, int gameCode, String stadiumName, int stadiumNo, String homeTeamName, int homeTeamNo, String awayTeamName, int awayTeamNo, String paymentMethod, char reservationState, String reservationStateKor, int reservationPrice, String successDate, String cancelDate, char userCancelPolicyAgreeFlag, String userCancelPolicyAgreeDate, char userAgreePrivateInfoSaveFlag, String userAgreePrivateInfoSaveDate, char userAgreeMarketingFlag, String userAgreeMarketingDate, char paymentAgencyAgreeFlag, String paymentAgreeAgreeDate, char paymentAgreePrivateInfoSaveFlag, String paymentAgreePrivateInfoSaveDate, int adminNo, String regDate, List<ReservationDetailVo> reservationDetailVoList) {
+        this.tradeId = tradeId;
+        this.userNo = userNo;
+        this.gameCode = gameCode;
+        this.stadiumName = stadiumName;
+        this.stadiumNo = stadiumNo;
+        this.homeTeamName = homeTeamName;
+        this.homeTeamNo = homeTeamNo;
+        this.awayTeamName = awayTeamName;
+        this.awayTeamNo = awayTeamNo;
+        this.paymentMethod = paymentMethod;
+        this.reservationState = reservationState;
+        this.reservationStateKor = reservationStateKor;
+        this.reservationPrice = reservationPrice;
+        this.successDate = successDate;
+        this.cancelDate = cancelDate;
+        this.userCancelPolicyAgreeFlag = userCancelPolicyAgreeFlag;
+        this.userCancelPolicyAgreeDate = userCancelPolicyAgreeDate;
+        this.userAgreePrivateInfoSaveFlag = userAgreePrivateInfoSaveFlag;
+        this.userAgreePrivateInfoSaveDate = userAgreePrivateInfoSaveDate;
+        this.userAgreeMarketingFlag = userAgreeMarketingFlag;
+        this.userAgreeMarketingDate = userAgreeMarketingDate;
+        this.paymentAgencyAgreeFlag = paymentAgencyAgreeFlag;
+        this.paymentAgreeAgreeDate = paymentAgreeAgreeDate;
+        this.paymentAgreePrivateInfoSaveFlag = paymentAgreePrivateInfoSaveFlag;
+        this.paymentAgreePrivateInfoSaveDate = paymentAgreePrivateInfoSaveDate;
+        this.adminNo = adminNo;
+        this.regDate = regDate;
+        this.reservationDetailVoList = reservationDetailVoList;
+    }
+
+    public List<ReservationDetailVo> getReservationDetailVoList() {
+        return reservationDetailVoList;
+    }
+
+    public void setReservationDetailVoList(List<ReservationDetailVo> reservationDetailVoList) {
+        this.reservationDetailVoList = reservationDetailVoList;
     }
 
     public int getTradeId() {
@@ -131,6 +172,18 @@ public class ReservationVo {
 
     public void setReservationState(char reservationState) {
         this.reservationState = reservationState;
+        if(reservationState == 'a'){
+            this.reservationStateKor = "예약완료";
+        }else if(reservationState == 'b'){
+            this.reservationStateKor = "예약 중";
+        }else if(reservationState == 'c'){
+            this.reservationStateKor = "예약취소";
+        }
+
+    }
+
+    public String getReservationStateKor() {
+        return reservationStateKor;
     }
 
     public int getReservationPrice() {

@@ -1,38 +1,204 @@
 package com.example.adminbaseball.models;
 
 public class ReservationDetailVo {
-    private int seq;
-    private int userNo;
-    private int tradeId;
-    private String ageType;
-    private int stadiumNo;
-    private String stadiumName;
+    private long seq; // 일련번호
+    private int userNo; // 회원번호
+    private long tradeId; // 거래번호
+    private String ageType; // 나이 구분값 (a:일반, b:만 6세 이상 ~ 만 12세 미만, c:만 6세 미만)
+    private int stadiumNo; // 경기장 번호
+    private String stadiumName; // 경기장명
+    private int homeTeamNo; // 홈팀 번호
+    private String homeTeamName; // 홈팀 명
+    private int awayTeamNo; // 어웨이팀 번호
+    private String awayTeamName; // 어웨이팀 명
+    private int gameListSeq; // 게임 내역 일련번호
+    private int stadiumSeatListSeq; // 경기장 좌석 일련번호
+    private int seatNo; // 좌석번호
+    private String reservationState; // 예매 상태 (a:예매, b:예매중, c:예매 취소)
+    private int objectSeq; // 보호자의 경우 보호대상 예매 일련번호
+    private int totalPrice; // 최종 티켓 금액
+    private String ticketType; // 권종 (a:일반, b:아동, c:유아)
+    private int ticketPrice; // 티켓 금액
+    private String discountCode; // 할인코드
+    private int discountPrice; // 할인 금액
+    private int adminNo; // 관리자번호
+    private String regDate; // 등록일시
 
+    // Getters and Setters
 
+    public long getSeq() {
+        return seq;
+    }
 
+    public void setSeq(long seq) {
+        this.seq = seq;
+    }
 
+    public int getUserNo() {
+        return userNo;
+    }
 
+    public void setUserNo(int userNo) {
+        this.userNo = userNo;
+    }
+
+    public long getTradeId() {
+        return tradeId;
+    }
+
+    public void setTradeId(long tradeId) {
+        this.tradeId = tradeId;
+    }
+
+    public String getAgeType() {
+        return ageType;
+    }
+
+    public void setAgeType(String ageType) {
+        this.ageType = ageType;
+    }
+
+    public int getStadiumNo() {
+        return stadiumNo;
+    }
+
+    public void setStadiumNo(int stadiumNo) {
+        this.stadiumNo = stadiumNo;
+    }
+
+    public String getStadiumName() {
+        return stadiumName;
+    }
+
+    public void setStadiumName(String stadiumName) {
+        this.stadiumName = stadiumName;
+    }
+
+    public int getHomeTeamNo() {
+        return homeTeamNo;
+    }
+
+    public void setHomeTeamNo(int homeTeamNo) {
+        this.homeTeamNo = homeTeamNo;
+    }
+
+    public String getHomeTeamName() {
+        return homeTeamName;
+    }
+
+    public void setHomeTeamName(String homeTeamName) {
+        this.homeTeamName = homeTeamName;
+    }
+
+    public int getAwayTeamNo() {
+        return awayTeamNo;
+    }
+
+    public void setAwayTeamNo(int awayTeamNo) {
+        this.awayTeamNo = awayTeamNo;
+    }
+
+    public String getAwayTeamName() {
+        return awayTeamName;
+    }
+
+    public void setAwayTeamName(String awayTeamName) {
+        this.awayTeamName = awayTeamName;
+    }
+
+    public int getGameListSeq() {
+        return gameListSeq;
+    }
+
+    public void setGameListSeq(int gameListSeq) {
+        this.gameListSeq = gameListSeq;
+    }
+
+    public int getStadiumSeatListSeq() {
+        return stadiumSeatListSeq;
+    }
+
+    public void setStadiumSeatListSeq(int stadiumSeatListSeq) {
+        this.stadiumSeatListSeq = stadiumSeatListSeq;
+    }
+
+    public int getSeatNo() {
+        return seatNo;
+    }
+
+    public void setSeatNo(int seatNo) {
+        this.seatNo = seatNo;
+    }
+
+    public String getReservationState() {
+        return reservationState;
+    }
+
+    public void setReservationState(String reservationState) {
+        this.reservationState = reservationState;
+    }
+
+    public int getObjectSeq() {
+        return objectSeq;
+    }
+
+    public void setObjectSeq(int objectSeq) {
+        this.objectSeq = objectSeq;
+    }
+
+    public int getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(int totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public String getTicketType() {
+        return ticketType;
+    }
+
+    public void setTicketType(String ticketType) {
+        this.ticketType = ticketType;
+    }
+
+    public int getTicketPrice() {
+        return ticketPrice;
+    }
+
+    public void setTicketPrice(int ticketPrice) {
+        this.ticketPrice = ticketPrice;
+    }
+
+    public String getDiscountCode() {
+        return discountCode;
+    }
+
+    public void setDiscountCode(String discountCode) {
+        this.discountCode = discountCode;
+    }
+
+    public int getDiscountPrice() {
+        return discountPrice;
+    }
+
+    public void setDiscountPrice(int discountPrice) {
+        this.discountPrice = discountPrice;
+    }
+
+    public int getAdminNo() {
+        return adminNo;
+    }
+
+    public void setAdminNo(int adminNo) {
+        this.adminNo = adminNo;
+    }
+
+    public LocalDateTime getRegDate() {
+        return regDate;
+    }
+
+    public void setRegDate(LocalDateTime regDate) {
+        this.regDate = regDate;
+    }
 }
-
-// `seq` int unsigned NOT NULL AUTO_INCREMENT COMMENT '일련번호',
-//  `user_no` int unsigned NOT NULL COMMENT '회원번호',
-//  `trade_id` bigint unsigned NOT NULL COMMENT '거래번호',
-//  `age_type` char(1) NOT NULL COMMENT '나이 구분값 (a:일반, b:만 6세 이상 ~ 만 12세 미만, c:만 6세 미만)',
-//  `stadium_no` int unsigned NOT NULL COMMENT '경기장 번호',
-//  `stadium_name` varchar(30) NOT NULL COMMENT '경기장명',
-//  `home_team_no` int unsigned NOT NULL COMMENT '홈팀 번호',
-//  `home_team_name` varchar(15) NOT NULL COMMENT '홈팀 명',
-//  `away_team_no` int unsigned NOT NULL COMMENT '어웨이팀 번호',
-//  `away_team_name` varchar(15) NOT NULL COMMENT '어웨이팀 명',
-//  `game_list_seq` int unsigned NOT NULL COMMENT '게임 내역 일련번호',
-//  `stadium_seat_list_seq` int unsigned NOT NULL COMMENT '경기장 좌석 일련번호',
-//  `seat_no` tinyint unsigned NOT NULL COMMENT '좌석번호',
-//  `reservation_state` char(1) NOT NULL DEFAULT 'b' COMMENT '예매 상태 (a:예매, b:예매중, c:예매 취소)',
-//  `object_seq` int unsigned NOT NULL DEFAULT '0' COMMENT '보호자의 경우 보호대상 예매 일련번호',
-//  `total_price` int unsigned NOT NULL COMMENT '최종 티켓 금액',
-//  `ticket_type` char(1) NOT NULL COMMENT '권종 (a:일반, b:아동, c:유아)',
-//  `ticket_price` int unsigned NOT NULL COMMENT '티켓 금액',
-//  `discount_code` char(3) NOT NULL DEFAULT '' COMMENT '할인코드',
-//  `discount_price` int unsigned NOT NULL DEFAULT '0' COMMENT '할인 금액',
-//  `admin_no` int unsigned NOT NULL DEFAULT '0' COMMENT '관리자번호',
-//  `reg_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '등록일시',

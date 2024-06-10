@@ -1,4 +1,4 @@
-package com.example.adminbaseball;
+package com.example.adminbaseball.models;
 
 public class MemberVo {
 
