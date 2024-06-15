@@ -1,7 +1,7 @@
 package com.example.adminbaseball;
 
 import com.example.adminbaseball.common.JDBCconnection;
-import com.example.adminbaseball.models.MemberVo;
+import com.example.adminbaseball.admin_model.MemberVo;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

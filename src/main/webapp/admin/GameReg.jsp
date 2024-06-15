@@ -1,9 +1,9 @@
 <%@ page import="com.example.adminbaseball.StadiumVo" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
-<%@ page import="com.example.adminbaseball.DAO.StadiumDAO" %>
+<%@ page import="com.example.adminbaseball.admin_dao.StadiumDAO" %>
 <%@ page import="com.example.adminbaseball.TeamVo" %>
-<%@ page import="com.example.adminbaseball.DAO.TeamDAO" %><%--
+<%@ page import="com.example.adminbaseball.admin_dao.TeamDAO" %><%--
   Created by IntelliJ IDEA.
   User: jeongminsu
   Date: 4/14/24

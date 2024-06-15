@@ -1,6 +1,6 @@
 <%@ page import="com.example.adminbaseball.common.JDBCconnection" %>
 <%@ page import="com.example.adminbaseball.Member" %>
-<%@ page import="com.example.adminbaseball.models.MemberVo" %>
+<%@ page import="com.example.adminbaseball.admin_model.MemberVo" %>
 <%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: jeongminsu

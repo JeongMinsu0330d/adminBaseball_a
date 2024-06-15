@@ -1,5 +1,5 @@
-<%@ page import="com.example.adminbaseball.DAO.ReservationDAO" %>
-<%@ page import="com.example.adminbaseball.models.ReservationVo" %>
+<%@ page import="com.example.adminbaseball.admin_dao.ReservationDAO" %>
+<%@ page import="com.example.adminbaseball.admin_model.ReservationVo" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>

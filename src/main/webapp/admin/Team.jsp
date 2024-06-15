@@ -1,6 +1,6 @@
 <%@ page import="com.example.adminbaseball.StadiumVo" %>
 <%@ page import="java.util.List" %>
-<%@ page import="com.example.adminbaseball.DAO.TeamDAO" %>
+<%@ page import="com.example.adminbaseball.admin_dao.TeamDAO" %>
 <%@ page import="com.example.adminbaseball.TeamVo" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%

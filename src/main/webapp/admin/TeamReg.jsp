@@ -1,4 +1,4 @@
-<%@ page import="com.example.adminbaseball.DAO.StadiumDAO" %>
+<%@ page import="com.example.adminbaseball.admin_dao.StadiumDAO" %>
 <%@ page import="com.example.adminbaseball.StadiumVo" %>
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
