@@ -147,22 +147,24 @@ public class MemberDAO extends JDBCconnection {
     }
 
     public Member getMember(Member member){
-        String qrySelectMember = "SELECT user_no, user_email FROM user_private_info WHERE user_email = ? AND user_password = ? ";
+        String qrySelectMember = "SELECT user_no, user_email FROM user_private_info WHERE user_email = ? AND user_password = ? limit 1";
 
         try{
+            System.out.println(member.getUserEmail());
+            System.out.println(member.getPassword());
             psmt= CBaseBallMaster.prepareStatement(qrySelectMember);
             psmt.setString(1, member.getUserEmail());
             psmt.setString(2,member.getPassword());
 
             rs = psmt.executeQuery();
 
-            while(rs.next()){
+            if(rs.next()){
                 member.setUserNo(rs.getInt("user_no"));
                 member.setUserEmail(rs.getString("user_email"));
             }
+            System.out.println(member.getUserEmail());
 
             return member;
-
         }catch(SQLException e){
             e.printStackTrace();
             return null;

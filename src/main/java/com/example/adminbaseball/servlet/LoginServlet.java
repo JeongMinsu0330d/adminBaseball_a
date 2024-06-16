@@ -18,6 +18,7 @@ public class LoginServlet extends HttpServlet {
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        MemberService memberService = new MemberService();
 
         Map<String, String[]> paramMap = request.getParameterMap();
          for (Map.Entry<String, String[]> entry : paramMap.entrySet()) {
@@ -38,13 +39,18 @@ public class LoginServlet extends HttpServlet {
         String password = (String)request.getParameter("password");
 
         Member member = new Member();
-        MemberService memberService = new MemberService();
+        member.setUserEmail(userId);
+        member.setPassword(password);
+
 
         member = memberService.fnLogin(member);
 
         HttpSession session = request.getSession();
+
         session.setAttribute("user_no",member.getUserNo());
         session.setAttribute("user_id",member.getUserEmail());
+        System.out.println(member.getUserEmail());
+
 
         request.setAttribute("message","로그인에 성공하였습니다.");
         request.getRequestDispatcher("/web/index.jsp").forward(request,response);
