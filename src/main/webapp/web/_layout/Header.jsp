@@ -2,7 +2,6 @@
 <%
     String user_id =  (String)session.getAttribute("user_id");
 
-    System.out.print(user_id);
 %>
 <!DOCTYPE html>
 <html>
@@ -46,7 +45,7 @@
     <div class="header_wrap_box">
         <%= user_id %> 님
         |
-        <a href="#"> 로그 아웃 </a>
+        <a href="/Gradle___com_example___adminBaseball_1_0_SNAPSHOT_war__exploded_/web/member/login?logout=1"> 로그 아웃 </a>
     </div>
     <%
         }

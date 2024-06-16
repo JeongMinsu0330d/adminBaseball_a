@@ -13,12 +13,23 @@ import java.util.Map;
 public class LoginServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        System.out.println("login");
-        request.getRequestDispatcher("/web/member/Login.jsp").forward(request, response);
+
+        if(request.getParameter("logout") != null) {
+             // 로그 아웃
+             HttpSession session = request.getSession();
+             session.invalidate();
+
+             request.setAttribute("message", "로그아웃에 성공하였습니다.");
+             request.getRequestDispatcher("/web/index.jsp").forward(request, response);
+         }else{
+             request.getRequestDispatcher("/web/member/Login.jsp").forward(request, response);
+         }
+
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         MemberService memberService = new MemberService();
+
 
         Map<String, String[]> paramMap = request.getParameterMap();
          for (Map.Entry<String, String[]> entry : paramMap.entrySet()) {
@@ -46,11 +57,8 @@ public class LoginServlet extends HttpServlet {
         member = memberService.fnLogin(member);
 
         HttpSession session = request.getSession();
-
         session.setAttribute("user_no",member.getUserNo());
         session.setAttribute("user_id",member.getUserEmail());
-        System.out.println(member.getUserEmail());
-
 
         request.setAttribute("message","로그인에 성공하였습니다.");
         request.getRequestDispatcher("/web/index.jsp").forward(request,response);
