@@ -8,25 +8,24 @@ public class Member {
    private String userName;
    private String userGender;
    private String userBirthDate;
+   private String address;
    private String userCi;
    private String user_private_save_type;
-   private String getUser_private_save_type;
-   private String getUser_private_save_date;
+   private String user_private_save_date;
+   private String user_service_save_type;
+   private String user_service_save_date;
 
 
+   public Member() {}
 
-   public Member() {
-
-   }
-
-   public Member(String userEmail, String password, String userName, String userGender, String userBirthDate, String user_private_save_type, String getUser_private_save_type) {
+   public Member(String userEmail, String password, String userName, String userBirthDate, String address, String user_private_save_type, String user_service_save_type) {
       this.userEmail = userEmail;
       this.password = password;
       this.userName = userName;
-      this.userGender = userGender;
       this.userBirthDate = userBirthDate;
+      this.address = address;
       this.user_private_save_type = user_private_save_type;
-      this.getUser_private_save_type = getUser_private_save_type;
+      this.user_service_save_type = user_service_save_type;
    }
 
    public int getUserNo() {
@@ -85,6 +84,14 @@ public class Member {
       this.userBirthDate = userBirthDate;
    }
 
+   public String getAddress() {
+      return address;
+   }
+
+   public void setAddress(String address) {
+      this.address = address;
+   }
+
    public String getUserCi() {
       return userCi;
    }
@@ -101,19 +108,27 @@ public class Member {
       this.user_private_save_type = user_private_save_type;
    }
 
-   public String getGetUser_private_save_type() {
-      return getUser_private_save_type;
+   public String getUser_private_save_date() {
+      return user_private_save_date;
    }
 
-   public void setGetUser_private_save_type(String getUser_private_save_type) {
-      this.getUser_private_save_type = getUser_private_save_type;
-   }
-   public String getGetUser_private_save_date() {
-   return getUser_private_save_date;
+   public void setUser_private_save_date(String user_private_save_date) {
+      this.user_private_save_date = user_private_save_date;
    }
 
-   public void setGetUser_private_save_date(String getUser_private_save_date) {
-   this.getUser_private_save_date = getUser_private_save_date;
+   public String getUser_service_save_type() {
+      return user_service_save_type;
    }
 
+   public void setUser_service_save_type(String user_service_save_type) {
+      this.user_service_save_type = user_service_save_type;
+   }
+
+   public String getUser_service_save_date() {
+      return user_service_save_date;
+   }
+
+   public void setUser_service_save_date(String user_service_save_date) {
+      this.user_service_save_date = user_service_save_date;
+   }
 }

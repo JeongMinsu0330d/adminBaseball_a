@@ -14,8 +14,8 @@ public class MemberServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         request.setAttribute("menu","회원 관리");
-        request.getRequestDispatcher("admin/Member.jsp")
-                .forward(request,response);
+
+        request.getRequestDispatcher("admin/Member.jsp").forward(request,response);
     }
 
     public void destroy() {
