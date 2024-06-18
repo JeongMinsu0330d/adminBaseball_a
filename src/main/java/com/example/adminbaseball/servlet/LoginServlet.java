@@ -61,7 +61,7 @@ public class LoginServlet extends HttpServlet {
         session.setAttribute("user_id",member.getUserEmail());
 
         request.setAttribute("message","로그인에 성공하였습니다.");
-        request.getRequestDispatcher("/web/index.jsp").forward(request,response);
+        request.getRequestDispatcher("/web").forward(request,response);
 
     }
 }

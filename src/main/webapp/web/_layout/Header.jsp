@@ -46,6 +46,9 @@
         <%= user_id %> 님
         |
         <a href="/Gradle___com_example___adminBaseball_1_0_SNAPSHOT_war__exploded_/web/member/login?logout=1"> 로그 아웃 </a>
+        |
+        <a href="/Gradle___com_example___adminBaseball_1_0_SNAPSHOT_war__exploded_/web/member/MyPage.jsp"> 마이페이지 </a>
+
     </div>
     <%
         }
