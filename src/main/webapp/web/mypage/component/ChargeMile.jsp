@@ -1,7 +1,8 @@
-
+<%@ page import="com.example.adminbaseball.service.MileageService2" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 
 <%
+    MileageService2 service2 = new MileageService2();
     String chargeType = (String)request.getParameter("paymentMethod");
     String chargeName;
     if(chargeType.equals("c")){
@@ -49,6 +50,17 @@
             
         }
 
+        function charge(){
+            let isCharge = <%= service2.chargeMileage()%>
+            console.log(isCharge);
+            if(isCharge) {
+                alert("마일리지 충전 완료")
+                window.close();
+            }else{
+                alert("마일리지 충전 실패")
+            }
+
+        }
     </script>
 
 </head>
@@ -70,7 +82,10 @@
             <input type="hidden" name="paymentMethod" value="<%=chargeType%>">
             <input type="hidden" id="result" name="chargeMile">
             <div id="result_txt"></div>
-            <input type="submit" value="확인">
+            <input type="submit" value="확인" onclick="return charge()">
+            <input type="reset" value="취소">
+
+
         </form>
 
     </div>

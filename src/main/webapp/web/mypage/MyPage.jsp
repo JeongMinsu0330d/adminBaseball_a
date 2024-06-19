@@ -2,7 +2,9 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
-
+<%
+    String contextPath = request.getContextPath();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -89,10 +91,10 @@
             <div class="menu_wrap">
                 <div id="sidebar">
                     <ul class="menu">
-                        <li><a href="./reservation">예매 내역</a></li>
-                        <li><a href="./mileage">마일리지</a></li>
-                        <li><a href="./point">포인트</a></li>
-                        <li><a href="./coupon">할인쿠폰</a></li>
+                        <li><a href=contextPath+"/web/mypage/reservation">예매 내역</a></li>
+                        <li><a href=contextPath+"/web/mypage/mileage">마일리지</a></li>
+                        <li><a href=contextPath+"/web/mypage/point">포인트</a></li>
+                        <li><a href=contextPath+"/web/mypage/coupon">할인쿠폰</a></li>
                     </ul>
                 </div>
             </div>

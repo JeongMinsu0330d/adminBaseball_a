@@ -57,7 +57,7 @@ public class SignUpServlet extends HttpServlet {
 
             message = "회원 가입에 성공 하였습니다.";
             request.setAttribute("message", message);
-            request.getRequestDispatcher("/web/member/Login.jsp").forward(request, response);
+            request.getRequestDispatcher("  ").forward(request, response);
         }catch(Exception e){
             message = "회원 가입에 실패 하였습니다.";
             request.setAttribute("message", message);
