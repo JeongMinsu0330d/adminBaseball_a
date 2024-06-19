@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%
     String user_id =  (String)session.getAttribute("user_id");
-
+    String contextPath = request.getContextPath();
 %>
 <!DOCTYPE html>
 <html>
@@ -35,9 +35,9 @@
 <%--    ${pageContext.request.contextPath}/login/login.do --%>
 <%--    ${pageContext.request.contextPath}/login/logout.do --%>
     <div class="header_wrap_box">
-        <a href="/Gradle___com_example___adminBaseball_1_0_SNAPSHOT_war__exploded_/web/member/login">로그인</a>
+        <a href="<%=contextPath%>/web/member/login">로그인</a>
         <span> / </span>
-        <a href="/Gradle___com_example___adminBaseball_1_0_SNAPSHOT_war__exploded_/web/member/signup">회원가입</a>
+        <a href="<%=contextPath%>/web/member/signup">회원가입</a>
     </div>
     <%
     }else {
@@ -45,9 +45,9 @@
     <div class="header_wrap_box">
         <%= user_id %> 님
         |
-        <a href="/Gradle___com_example___adminBaseball_1_0_SNAPSHOT_war__exploded_/web/member/login?logout=1"> 로그 아웃 </a>
+        <a href="<%=contextPath%>/web/member/login?logout=1"> 로그 아웃 </a>
         |
-        <a href="/Gradle___com_example___adminBaseball_1_0_SNAPSHOT_war__exploded_/web/member/MyPage.jsp"> 마이페이지 </a>
+        <a href="<%=contextPath%>/web/my/mileage"> 마이페이지 </a>
 
     </div>
     <%

@@ -82,7 +82,7 @@
             <input type="hidden" name="paymentMethod" value="<%=chargeType%>">
             <input type="hidden" id="result" name="chargeMile">
             <div id="result_txt"></div>
-            <input type="submit" value="확인" onclick="return charge()">
+            <input type="button" value="확인" onclick="charge()">
             <input type="reset" value="취소">
 
 

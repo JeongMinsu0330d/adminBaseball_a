@@ -91,10 +91,10 @@
             <div class="menu_wrap">
                 <div id="sidebar">
                     <ul class="menu">
-                        <li><a href=contextPath+"/web/mypage/reservation">예매 내역</a></li>
-                        <li><a href=contextPath+"/web/mypage/mileage">마일리지</a></li>
-                        <li><a href=contextPath+"/web/mypage/point">포인트</a></li>
-                        <li><a href=contextPath+"/web/mypage/coupon">할인쿠폰</a></li>
+                        <li><a href=<%=contextPath%>"/web/mypage/reservation">예매 내역</a></li>
+                        <li><a href=<%=contextPath%>"/web/mypage/mileage">마일리지</a></li>
+                        <li><a href=<%=contextPath%>"/web/mypage/point">포인트</a></li>
+                        <li><a href=<%=contextPath%>"/web/mypage/coupon">할인쿠폰</a></li>
                     </ul>
                 </div>
             </div>

@@ -4,7 +4,7 @@
 
 <%
 
-    int myMile = 0;
+    int myMile = (int)request.getAttribute("mileage");
 %>
 
 <!DOCTYPE html>

@@ -8,20 +8,22 @@ public class MileageService2 {
 
     public boolean chargeMileage() {
         boolean isResult = false;
-        int userNo = 12345;
+        int userNo = 12;
         String accountCode = "ABCDE";
         int chargeObjectSeq = 1;
         int payPrice = 10000;
-        int fillMileage = 1000;
+        int fillMileage = 8000;
         int payCommission = 500;
         String tid = "PG1234567890";
 
         JDBCconnection jdbc = new JDBCconnection();
         Connection conn = jdbc.CBaseBallMaster;
+        PreparedStatement pstmt = null;
         PreparedStatement pstmt1 = null;
         PreparedStatement pstmt2 = null;
         PreparedStatement pstmt3 = null;
         PreparedStatement pstmt4 = null;
+        PreparedStatement pstmt5 = null;
 
         try {
             // JDBC 드라이버 로드
@@ -29,6 +31,26 @@ public class MileageService2 {
 
             // 자동 커밋 비활성화 (트랜잭션 시작)
             conn.setAutoCommit(false);
+            String sql = "SELECT mileage FROM mileage_list WHERE user_no = ? AND mileage_type = 'm' FOR UPDATE";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, userNo);
+            ResultSet rs = pstmt.executeQuery();
+            int mileage = 0;
+            if(rs.next()){
+                mileage = rs.getInt("mileage");
+            }else{
+                sql = " INSERT INTO mileage_list (user_no,mileage,mileage_type,update_date) values(?,0,'m',NOW())";
+                pstmt = conn.prepareStatement(sql);
+                pstmt.setInt(1, userNo);
+                int affectedRows = pstmt.executeUpdate();
+                if (affectedRows == 0) {
+                    throw new SQLException("마일리지 리스트 충전 정보 삽입 실패, no rows affected.");
+                }
+
+                mileage = 0;
+            }
+            System.out.println(mileage);
+
 
             // 1. mileage_fill_list에 데이터 삽입
             String sql1 = "INSERT INTO mileage_fill_list (account_code, charge_object_seq, user_no, pay_price, mileage_type, fill_mileage, pay_commission, tid, mileage_cancel_flag) " +
@@ -103,6 +125,22 @@ public class MileageService2 {
             if (affectedRows4 == 0) {
                 throw new SQLException("마일리지 변동 정보 삽입 실패, no rows affected.");
             }
+
+            mileage += fillMileage;
+
+
+
+            String sql5 = "UPDATE mileage_list SET mileage = ? WHERE user_no = ? AND mileage_type ='m'";
+            pstmt5 = conn.prepareStatement(sql5);
+            pstmt5.setInt(1,mileage);
+            pstmt5.setInt(2,userNo);
+
+            int affectedRows5 = pstmt5.executeUpdate();
+            if (affectedRows5 == 0) {
+                throw new SQLException("마일리지 변동 정보 삽입 실패, no rows affected.");
+            }
+
+
 
             // 모든 작업이 성공적으로 완료되었으므로 커밋
             conn.commit();
