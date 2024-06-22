@@ -52,6 +52,7 @@ public class ReservationService {
                 rsReservationDetail = pstmReservationDetail.executeQuery();
                 String seatInfo = "";
                 int countReservation = 0;
+
                 while(rsReservationDetail.next()){
                     countReservation += rsReservationDetail.getInt("cnt_reservation");
                     seatInfo += rsReservationDetail.getString("section_no") + " : " + rsReservationDetail.getString("seat_no") + "  ";

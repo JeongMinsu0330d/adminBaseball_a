@@ -86,15 +86,13 @@ public class BaseballService {
 
     }
 
-    // 경기명(홈팀,상대팀), 일정, 걍ㄱ;징, 이미지, 게임 코드
+    // 경기명(홈팀,상대팀), 일정, 경기장, 이미지, 게임 코드
     public List<GameVo> fnGetGameOneByGameCode(int gameCode){
-
-
-        String qrySelectGame ="SELECT a.seq as game_code,a.home_team_name as home_team, a.away_team_name as away_team,a.play_date as play_date, b.team_image as home_team_image, c.team_image as away_team_image  " +
+        String qrySelectGame ="SELECT a.seq as game_code,a.home_team_name as home_team, a.away_team_name as away_team,a.play_date as play_date, a.stadium_name as stadium_name, b.team_image as home_team_image, c.team_image as away_team_image  " +
                               "  FROM baseball_game_list as a" +
                               "  LEFT JOIN code_baseball_team_list as b on(a.home_team_no= b.team_no)" +
                               "  LEFT JOIN code_baseball_team_list as c on(a.away_team_no= c.team_no)" +
-                              " WHERE a.game_code = ? limit 1";
+                              " WHERE a.seq = ? limit 1";
 
         System.out.println("선택 경기 정보 조회");
 
@@ -116,9 +114,12 @@ public class BaseballService {
                 game.setSeq(rsGame.getInt("game_code"));
                 game.setStrHomeTeamName(rsGame.getString("home_team"));
                 game.setStrAwayTeamName(rsGame.getString("away_team"));
+
                 game.setDtPlayDate(rsGame.getString("play_date"));
+
                 game.setHomeTeamImage(rsGame.getString("home_team_image"));
                 game.setAwayTeamImage(rsGame.getString("away_team_image"));
+                game.setStrStadiumName(rsGame.getString("stadium_name"));
                 games.add(game);
             }
             return games;

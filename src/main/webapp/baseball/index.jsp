@@ -149,10 +149,12 @@
                     <select name="teamNo" id="team_no"  class="input_search_team">
                         <option value="0">구단을 선택해 주시기 바랍니다.</option>
                         <%
-                            for(TeamVo team : teams){
+                            if(teams != null){
+                                for(TeamVo team : teams){
                         %>
-                                <option value="<%= team.getnTeamNo()%>"><%=team.getStrTeamName()%></option>
+                                    <option value="<%= team.getnTeamNo()%>"><%=team.getStrTeamName()%></option>
                         <%
+                                }
                             }
                         %>
                     </select>
