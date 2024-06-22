@@ -211,7 +211,7 @@
             <div class="signup_header">
                 회원가입
             </div>
-            <form action="/Gradle___com_example___adminBaseball_1_0_SNAPSHOT_war__exploded_/web/member/signup" method="POST">
+            <form action="<%=request.getContextPath()%>/web/member/signup" method="POST">
                 <div  class="signup_box">
                     <label>
                         <span class="label">계정생성</span>

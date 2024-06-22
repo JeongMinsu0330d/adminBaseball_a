@@ -10,6 +10,9 @@ public class GameVo {
     private String strHomeTeamName;
     private String strAwayTeamName;
     private String dtRegDate;
+    private String homeTeamImage;
+    private String awayTeamImage;
+
 
     public GameVo() {
     }
@@ -24,6 +27,22 @@ public class GameVo {
         this.strHomeTeamName = strHomeTeamName;
         this.strAwayTeamName = strAwayTeamName;
         this.dtRegDate = dtRegDate;
+    }
+
+    public String getHomeTeamImage() {
+        return homeTeamImage;
+    }
+
+    public void setHomeTeamImage(String homeTeamImage) {
+        this.homeTeamImage = homeTeamImage;
+    }
+
+    public String getAwayTeamImage() {
+        return awayTeamImage;
+    }
+
+    public void setAwayTeamImage(String awayTeamImage) {
+        this.awayTeamImage = awayTeamImage;
     }
 
     public int getSeq() {

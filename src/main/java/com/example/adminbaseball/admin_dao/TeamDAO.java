@@ -59,7 +59,7 @@ public class TeamDAO extends JDBCconnection {
     }
     public TeamVo getTeamNameByTeamNo(int nTeamNo) throws SQLException {
         TeamVo teamVo = new TeamVo();
-        String qrySelectTeamByTeamNo = "SELECT COUNT(*) FROM code_baseball_team_list WHERE team_no = ?";
+        String qrySelectTeamByTeamNo = "SELECT team_no, team_name FROM code_baseball_team_list WHERE team_no = ?";
 
         psmt = CBaseBallMaster.prepareStatement(qrySelectTeamByTeamNo);
         psmt.setInt(1,nTeamNo);

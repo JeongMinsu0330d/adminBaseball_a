@@ -1,8 +1,15 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="com.example.adminbaseball.TeamVo" %>
+<%@ page import="com.example.adminbaseball.admin_model.GameVo" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
+<%
+    List<TeamVo> teams = (List<TeamVo>)request.getAttribute("teams");
+    List<GameVo> games = (List<GameVo>)request.getAttribute("games");
 
+
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -69,21 +76,21 @@
             box-sizing: border-box;
         }
 
-        .section_wrap > .daily_game_list_wrap > .btn_wrap{
+          .btn_wrap{
             align-content: center;
             text-align: center;
             font-size: 23px;
             width:60px;
             height: 300px;
         }
-        .section_wrap > .daily_game_list_wrap > .daily_game_contents{
+          .daily_game_contents{
             display: flex;
             flex-direction: row;
             justify-content: space-around;
             border:1px solid black;
             overflow: hidden;
         }
-        .daily_game_contents > .items{
+         .items{
             display:flex;
             flex-direction: column;
             justify-content: space-around;
@@ -94,11 +101,14 @@
             margin-right: 42px;
         }
 
-        .daily_game_contents > .items > .image_wrap{
+         .image_wrap{
             width: 190px;
             height: 190px;
             border: 1px solid black;
             border-radius: 13px;
+        }
+        .info_wrap{
+            font-size:12px;
         }
 
 
@@ -113,9 +123,6 @@
             }else if(no > totalContent){
                 no = totalContent;
             }
-
-
-
         }
 
     </script>
@@ -137,117 +144,64 @@
 
         <div class="section_wrap">
             <div class="search_wrap">
-                <form action="game/detail" method="GET">
-                    <input type="text" class="input_search_team" name="team_name" placeholder="구단명을 입력해주세요">
-                    <select name="team_no" id="team_no"  class="input_search_team">
-                        <option value="0">구단을 선택해 주시기 바랍니다.</option>
-<%--                        <%--%>
-<%--                            for(Team team : teams){--%>
-<%--                        %>--%>
-<%--                                <option value="<%= team.getnTeamNo()%>"><%=team.getStrTeamName()%></option>--%>
-<%--                        <%--%>
-<%--                            }--%>
-<%--                        %>--%>
-                        <option value="1">기아 타이거즈</option>
-                    </select>
 
-                    <input type="date" class="input_search_date" vaule="" name="play_date" placeholder="경기일정 선택">
+                <form action="<%=request.getContextPath()%>/web/game" method="GET">
+                    <select name="teamNo" id="team_no"  class="input_search_team">
+                        <option value="0">구단을 선택해 주시기 바랍니다.</option>
+                        <%
+                            for(TeamVo team : teams){
+                        %>
+                                <option value="<%= team.getnTeamNo()%>"><%=team.getStrTeamName()%></option>
+                        <%
+                            }
+                        %>
+                    </select>
+                    <input type="date" class="input_search_date" value="" name="playDate" placeholder="경기일정 선택">
                     <input type="submit" class="input_search_btn" value = "검색">
                 </form>
+
 
             </div>
 
             <div class="event_wrap">
                 <label>이벤트</label>
             </div>
-
+            <h2> 금주 경기 </h2>
             <div class="daily_game_list_wrap">
                 <div class="btn_wrap"> < </div>
+
                 <div class="daily_game_contents">
-                    <div class="items">
-                        <div class="info_wrap">
-                            내용 1 | 시간
-                        </div>
-                        <div class="image_wrap">
 
-                        </div>
-                        <div class="btn_res">
-                            예매하기
-                        </div>
-                    </div>
-
-                    <div class="items">
-                        <div class="info_wrap">
-                            내용 1 | 시간
-                        </div>
-                        <div class="image_wrap">
-
-                        </div>
-                        <div class="btn_res">
-                            예매하기
-                        </div>
-                    </div>
-
-                    <div class="items">
-                        <div class="info_wrap">
-                            내용 1 | 시간
-                        </div>
-                        <div class="image_wrap">
-
-                        </div>
-                        <div class="btn_res">
-                            예매하기
-                        </div>
-                    </div>
-
-                    <div class="items">
-                        <div class="info_wrap">
-                            내용 1 | 시간
-                        </div>
-                        <div class="image_wrap">
-
-                        </div>
-                        <div class="btn_res">
-                            예매하기
-                        </div>
-                    </div>
-
-                    <div class="items">
-                        <div class="info_wrap">
-                            내용 1 | 시간
-                        </div>
-                        <div class="image_wrap">
-
-                        </div>
-                        <div class="btn_res">
-                            예매하기
-                        </div>
-                    </div>
-
-                    <div class="items">
-                        <div class="info_wrap">
-                            내용 1 | 시간
-                        </div>
-                        <div class="image_wrap">
-
-                        </div>
-                        <div class="btn_res">
-                            예매하기
-                        </div>
-                    </div>
-
-                    <div class="items">
-                        <div class="info_wrap">
-                            내용 1 | 시간
-                        </div>
-                        <div class="image_wrap">
-
-                        </div>
-                        <div class="btn_res">
-                            예매하기
-                        </div>
-                    </div>
-
+                    <%
+                        if(games == null){
+                    %>
+                        <span>금주 경기가 없습니다.</span>
+                    <%
+                        }else{
+                            for(GameVo game:games){
+                    %>
+                        <form action="<%=request.getContextPath()%>/web/game" method="GET">
+                            <div class="items">
+                                <div class="info_wrap">
+                                    <%= game.getStrHomeTeamName()%> VS <%= game.getStrAwayTeamName()%>>
+                                    <br>
+                                    <%=game.getDtPlayDate()%>>
+                                    <hr>
+                                </div>
+                                <div class="image_wrap">
+                                <image src="<%= game.getHomeTeamImage()%>"></image>
+                                <image src="<%= game.getAwayTeamImage()%>"></image>
+                                </div>
+                                <div class="btn_res">
+                                    <input type="hidden" name="gameCode" value="<%=game.getSeq()%>">
+                                    <input type="submit" value="예매하기">
+                                </div>
+                            </div>
+                        </form>
+                    <%
+                            }
+                        }
+                    %>
                 </div>
                 <div class="btn_wrap"> > </div>
             </div>
