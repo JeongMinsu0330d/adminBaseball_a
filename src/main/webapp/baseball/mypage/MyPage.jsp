@@ -86,7 +86,7 @@
 %>
 
     <div class="container">
-        <%@ include file="/web/_layout/Header.jsp"%>
+        <%@ include file="/baseball/_layout/Header.jsp"%>
         <div class="section_wrap">
             <div class="menu_wrap">
                 <div id="sidebar">

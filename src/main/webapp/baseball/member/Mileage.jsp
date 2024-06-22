@@ -4,7 +4,7 @@
 
 <%
 
-    int myMile = (int)request.getAttribute("mileage");
+    int myMile = 0;
 %>
 
 <!DOCTYPE html>
@@ -84,7 +84,7 @@
             }else {
 
             }
-            window.open("<%= request.getContextPath()%>/web/mypage/component/ChargeMile.jsp?paymentMethod="+chargeType,"_blank","width=500,height=500")
+            console.log(chargeType);
 
 
 
@@ -105,7 +105,7 @@
 %>
 
     <div class="container">
-        <%@ include file="/web/_layout/Header.jsp"%>
+        <%@ include file="/baseball/_layout/Header.jsp"%>
         <div class="section_wrap">
             <div class="menu_wrap">
                 <div id="sidebar">

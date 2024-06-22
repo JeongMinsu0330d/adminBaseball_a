@@ -13,16 +13,17 @@ import java.util.Map;
 public class LoginServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-
+        String context = request.getContextPath();
         if(request.getParameter("logout") != null) {
              // 로그 아웃
              HttpSession session = request.getSession();
              session.invalidate();
 
              request.setAttribute("message", "로그아웃에 성공하였습니다.");
-             request.getRequestDispatcher("/web/index.jsp").forward(request, response);
+             response.sendRedirect(context + "/web");
+
          }else{
-             request.getRequestDispatcher("/web/member/Login.jsp").forward(request, response);
+             request.getRequestDispatcher("/baseball/member/Login.jsp").forward(request, response);
          }
 
     }
@@ -61,7 +62,7 @@ public class LoginServlet extends HttpServlet {
         session.setAttribute("user_id",member.getUserEmail());
 
         request.setAttribute("message","로그인에 성공하였습니다.");
-        request.getRequestDispatcher("/web").forward(request,response);
+        request.getRequestDispatcher("/baseball").forward(request,response);
 
     }
 }

@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>메인페이지</title>
+    <title>마이페이지 - 포인트</title>
     <style>
         .container{
             width:80%;
@@ -84,7 +84,7 @@
             }else {
 
             }
-            console.log(chargeType);
+            window.open("<%= request.getContextPath()%>/baseball/mypage/component/ChargeMile.jsp?paymentMethod="+chargeType,"_blank","width=500,height=500")
 
 
 
@@ -105,7 +105,7 @@
 %>
 
     <div class="container">
-        <%@ include file="/web/_layout/Header.jsp"%>
+        <%@ include file="/baseball/_layout/Header.jsp"%>
         <div class="section_wrap">
             <div class="menu_wrap">
                 <div id="sidebar">

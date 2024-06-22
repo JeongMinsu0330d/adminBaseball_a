@@ -16,7 +16,7 @@ public class SignUpServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         System.out.println("here");
 
-        request.getRequestDispatcher("/web/member/SignUp.jsp").forward(request, response);
+        request.getRequestDispatcher("/baseball/member/SignUp.jsp").forward(request, response);
     }
 
 
@@ -61,14 +61,9 @@ public class SignUpServlet extends HttpServlet {
         }catch(Exception e){
             message = "회원 가입에 실패 하였습니다.";
             request.setAttribute("message", message);
-            response.sendRedirect("/web/member/SignUp.jsp");
+            response.sendRedirect("/baseball/member/SignUp.jsp");
 
         }
-
-
-
-
-
     }
 
 

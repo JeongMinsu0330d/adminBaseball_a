@@ -17,9 +17,9 @@ public class IdInquiryServlet extends HttpServlet {
         String path = "";
 
         if(doParam.equals("id")) {
-            path = "/web/member/Find.jsp";
+            path = "/baseball/member/Find.jsp";
         }else{
-            path = "/web/member/idInquiry.html";
+            path = "/baseball/member/idInquiry.html";
         }
 
 

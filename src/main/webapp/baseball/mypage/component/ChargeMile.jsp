@@ -2,6 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 
 <%
+    int userNo= (int)session.getAttribute("user_no");
     MileageService2 service2 = new MileageService2();
     String chargeType = (String)request.getParameter("paymentMethod");
     String chargeName;
@@ -51,7 +52,9 @@
         }
 
         function charge(){
-            let isCharge = <%= service2.chargeMileage()%>
+             let payPrice = document.querySelector('input[name="price"]:checked').value;
+            window.open("<%= request.getContextPath()%>/web/mypage/component/Charge.jsp?userNo=<%=userNo%>&paymentMethod=<%=chargeType%>&chargeMoney="+payPrice,"width=500,height=500")
+
             console.log(isCharge);
             if(isCharge) {
                 alert("마일리지 충전 완료")

@@ -133,14 +133,14 @@
 %>
 
     <div class="container">
-        <%@ include file="/web/_layout/Header.jsp"%>
+        <%@ include file="/baseball/_layout/Header.jsp"%>
 
         <div class="section_wrap">
             <div class="search_wrap">
                 <form action="game/detail" method="GET">
-<%--                    <input type="text" class="input_search_team" name="team_name" placeholder="구단명을 입력해주세요">--%>
-<%--                    <select name="team_no" id="team_no"  class="input_search_team">--%>
-<%--                        <option value="0">구단을 선택해 주시기 바랍니다.</option>--%>
+                    <input type="text" class="input_search_team" name="team_name" placeholder="구단명을 입력해주세요">
+                    <select name="team_no" id="team_no"  class="input_search_team">
+                        <option value="0">구단을 선택해 주시기 바랍니다.</option>
 <%--                        <%--%>
 <%--                            for(Team team : teams){--%>
 <%--                        %>--%>
@@ -148,8 +148,8 @@
 <%--                        <%--%>
 <%--                            }--%>
 <%--                        %>--%>
-<%--                        <option value="1">기아 타이거즈</option>--%>
-<%--                    </select>--%>
+                        <option value="1">기아 타이거즈</option>
+                    </select>
 
                     <input type="date" class="input_search_date" vaule="" name="play_date" placeholder="경기일정 선택">
                     <input type="submit" class="input_search_btn" value = "검색">

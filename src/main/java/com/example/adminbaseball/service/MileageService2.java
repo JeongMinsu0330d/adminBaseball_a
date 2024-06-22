@@ -1,20 +1,81 @@
 package com.example.adminbaseball.service;
 
 import com.example.adminbaseball.common.JDBCconnection;
+import com.example.adminbaseball.model.MileageChangeList;
+import com.example.adminbaseball.model.MileageFillList;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MileageService2 {
 
-    public boolean chargeMileage() {
+    public int fnGetMyMileage(int userNo){
+
+        int mileage = 0;
+        String qryMileage = "SELECT mileage FROM mileage_list WHERE user_no = ? AND mileage_type = 'm'";
+
+        try{
+            JDBCconnection jdbc = new JDBCconnection();
+            Connection conn = jdbc.CBaseBallMaster;
+
+            PreparedStatement ps = conn.prepareStatement(qryMileage);
+            ps.setInt(1, userNo);
+
+            ResultSet rs = ps.executeQuery();
+
+            if(rs.next()){
+                 mileage = rs.getInt("mileage");
+            }
+            return mileage;
+        }catch(SQLException e){
+            e.printStackTrace();
+            return 0;
+        }
+
+    }
+// 날짜, 구분(충전,결제...), 마일리지 변동 내역, 변동후 마일리지, 사용 및 전환 내역
+    public List<MileageChangeList> fnGetMileageChangeList(int userNo){
+        String qryMileage = "SELECT reg_date, change_type, account_code, mileage, next_mileage, change_comment FROM mileage_change_list WHERE user_no = ? ORDER BY reg_date desc";
+        List<MileageChangeList> mileageChangeLists = new ArrayList<>();
+        try{
+            JDBCconnection jdbc = new JDBCconnection();
+            Connection conn = jdbc.CBaseBallMaster;
+
+            PreparedStatement ps = conn.prepareStatement(qryMileage);
+            ps.setInt(1, userNo);
+
+            ResultSet rs = ps.executeQuery();
+
+            while(rs.next()){
+                MileageChangeList mileageChangeList = new MileageChangeList();
+                mileageChangeList.setRegDate(rs.getString("reg_date"));
+                mileageChangeList.setChangeType(rs.getString("change_type"));
+                mileageChangeList.setAccountCode(rs.getString("account_code"));
+                mileageChangeList.setMileage(rs.getInt("mileage"));
+                mileageChangeList.setNextMileage(rs.getInt("next_mileage"));
+                mileageChangeList.setChangeComment(rs.getString("change_comment"));
+
+                mileageChangeLists.add(mileageChangeList);
+            }
+            return mileageChangeLists;
+        }catch(SQLException e){
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+
+
+    public boolean chargeMileage(MileageFillList mileageFillList) {
         boolean isResult = false;
-        int userNo = 12;
-        String accountCode = "ABCDE";
-        int chargeObjectSeq = 1;
-        int payPrice = 10000;
-        int fillMileage = 8000;
-        int payCommission = 500;
-        String tid = "PG1234567890";
+        int userNo = mileageFillList.getUserNo();
+        String accountCode = mileageFillList.getAccountCode();
+        int chargeObjectSeq = 0;
+        int payPrice = mileageFillList.getPayPrice();
+        int fillMileage = mileageFillList.getFillMileage();
+        int payCommission = mileageFillList.getPayCommission();
+        String tid = mileageFillList.getTid();
 
         JDBCconnection jdbc = new JDBCconnection();
         Connection conn = jdbc.CBaseBallMaster;
@@ -27,8 +88,6 @@ public class MileageService2 {
 
         try {
             // JDBC 드라이버 로드
-
-
             // 자동 커밋 비활성화 (트랜잭션 시작)
             conn.setAutoCommit(false);
             String sql = "SELECT mileage FROM mileage_list WHERE user_no = ? AND mileage_type = 'm' FOR UPDATE";
@@ -108,6 +167,7 @@ public class MileageService2 {
             if (affectedRows3 == 0) {
                 throw new SQLException("마일리지 상세 로그 정보 삽입 실패, no rows affected.");
             }
+            mileage += fillMileage;
 
             // 4. mileage_change_list에 데이터 삽입
             String sql4 = "INSERT INTO mileage_change_list (object_seq, user_no, change_type, account_code, previous_mileage, mileage, next_mileage, change_comment, change_state, admin_no) " +
@@ -118,7 +178,8 @@ public class MileageService2 {
             pstmt4.setString(3, accountCode);
             pstmt4.setInt(4, 0); // 이전 마일리지가 적용되지 않으므로 0으로 설정
             pstmt4.setInt(5, fillMileage);
-            pstmt4.setInt(6, fillMileage); // 충전 후 마일리지를 다음 마일리지로 설정
+            pstmt4.setInt(6, mileage); // 충전 후 마일리지를 다음 마일리지로 설정
+
 
             // 쿼리 실행
             int affectedRows4 = pstmt4.executeUpdate();
@@ -126,11 +187,8 @@ public class MileageService2 {
                 throw new SQLException("마일리지 변동 정보 삽입 실패, no rows affected.");
             }
 
-            mileage += fillMileage;
 
-
-
-            String sql5 = "UPDATE mileage_list SET mileage = ? WHERE user_no = ? AND mileage_type ='m'";
+            String sql5 = "UPDATE mileage_list SET mileage = ?, update_date = NOW() WHERE user_no = ? AND mileage_type ='m'";
             pstmt5 = conn.prepareStatement(sql5);
             pstmt5.setInt(1,mileage);
             pstmt5.setInt(2,userNo);

@@ -2,7 +2,11 @@ package com.example.adminbaseball.servlet;
 
 import com.example.adminbaseball.common.JDBCconnection;
 import com.example.adminbaseball.model.Member;
+import com.example.adminbaseball.model.MileageChangeList;
+import com.example.adminbaseball.model.Reservation;
 import com.example.adminbaseball.service.MemberService;
+import com.example.adminbaseball.service.MileageService2;
+import com.example.adminbaseball.service.ReservationService;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -12,6 +16,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 @WebServlet(name = "MyPageServlet", value = "/web/my/*")
@@ -30,31 +36,30 @@ public class MyPageServlet extends HttpServlet {
         String lastUri = requestURI.substring(lastSlashIndex + 1);
         System.out.println(lastUri);
 
-        String path = "/web/mypage/";
+        String path = "/baseball/mypage/";
         int mileage = 0;
 
         if(lastUri.equals("mileage")){
-            String qryMileage = "SELECT mileage FROM mileage_list WHERE user_no = ? AND mileage_type = 'm'";
-            try{
-                JDBCconnection jdbc = new JDBCconnection();
-                Connection conn = jdbc.CBaseBallMaster;
 
-                PreparedStatement ps = conn.prepareStatement(qryMileage);
-                ps.setInt(1, userNo);
+            MileageService2 mileageService = new MileageService2();
+            mileage = mileageService.fnGetMyMileage(userNo);
+            List<MileageChangeList> mileageChangeList = mileageService.fnGetMileageChangeList(userNo);
 
-                ResultSet rs = ps.executeQuery();
 
-                if(rs.next()){
-                     mileage = rs.getInt("mileage");
-                }
-
-            }catch(SQLException e){
-                e.printStackTrace();
-            }
+            request.setAttribute("mileageChangeList", mileageChangeList);
             request.setAttribute("mileage", mileage);
+
             path += "Mileage.jsp";
 
         }else if(lastUri.equals("reservation")){
+
+            ReservationService reservationService = new ReservationService();
+            List<Reservation> reservations = reservationService.fnGetReservationList(userNo);
+
+
+
+            request.setAttribute("reservations", reservations);
+
             path += "Reservation.jsp";
         }else if(lastUri.equals("point")){
             path += "Point.jsp";

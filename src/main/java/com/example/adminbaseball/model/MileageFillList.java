@@ -18,18 +18,14 @@ public class MileageFillList {
     }
 
     // 매개변수가 있는 생성자
-    public MileageFillList(int seq, String accountCode, int chargeObjectSeq, int userNo, int payPrice, String mileageType, int fillMileage, int payCommission, String tid, String mileageCancelFlag, String regDate) {
-        this.seq = seq;
+    public MileageFillList( String accountCode,  int userNo, int payPrice, String mileageType, int fillMileage, int payCommission, String tid) {
         this.accountCode = accountCode;
-        this.chargeObjectSeq = chargeObjectSeq;
         this.userNo = userNo;
         this.payPrice = payPrice;
         this.mileageType = mileageType;
         this.fillMileage = fillMileage;
         this.payCommission = payCommission;
         this.tid = tid;
-        this.mileageCancelFlag = mileageCancelFlag;
-        this.regDate = regDate;
     }
 
     // getter 및 setter 메소드
