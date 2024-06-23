@@ -19,6 +19,7 @@ public class ReservationServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
+        request.getRequestDispatcher("/baseball/Reservation3.jsp").forward(request, response);
     }
 
 

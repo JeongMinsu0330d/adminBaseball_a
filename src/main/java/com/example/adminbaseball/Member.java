@@ -17,7 +17,7 @@ public class Member extends JDBCconnection {
         List<MemberVo> members = new ArrayList<>();
 
 
-        String qry = "SELECT a.user_no as user_no,a.user_reg_date as reg_date,b.user_email as user_email FROM user_general_info as a JOIN user_private_info as b USING(user_no) limit ?, 20;";
+        String qry = "SELECT a.user_no as user_no,a.user_reg_date as reg_date,b.user_email as user_email FROM user_general_info as a LEFT JOIN user_private_info as b USING(user_no) limit ?, 20;";
 
         psmt=CBaseBallMaster.prepareStatement(qry);
         psmt.setInt(1,20*page);

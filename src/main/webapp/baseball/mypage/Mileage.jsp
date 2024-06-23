@@ -88,8 +88,6 @@
             }
             window.open("<%= request.getContextPath()%>/baseball/mypage/component/ChargeMile.jsp?paymentMethod="+chargeType,"_blank","width=500,height=500")
 
-
-
         }
 
     </script>

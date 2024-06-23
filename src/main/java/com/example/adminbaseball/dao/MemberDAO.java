@@ -122,7 +122,7 @@ public class MemberDAO extends JDBCconnection {
 
     // agree
     public boolean setMemberAgree(Member member){
-        String qryInsertAgree = "INSERT INTO user_agree_info (user_no, user_agree_service_flag, user_agree_date, user_agree_private_info_save_flag, user_agree_private_info_save_date)" +
+        String qryInsertAgree = "INSERT INTO user_agree_info (user_no, user_agree_service_flag, user_agree_service_date, user_agree_private_info_save_flag, user_agree_private_info_save_date)" +
                 "VALUES (?,'Y',NOW(),'Y',NOW())";
 
         try{
@@ -147,7 +147,9 @@ public class MemberDAO extends JDBCconnection {
     }
 
     public Member getMember(Member member){
-        String qrySelectMember = "SELECT user_no, user_email FROM user_private_info WHERE user_email = ? AND user_password = ? limit 1";
+        String qrySelectMember = "SELECT user_no, user_email,user_name FROM user_private_info WHERE user_email = ? AND user_password = ? limit 1";
+
+        Member mem = new Member();
 
         try{
             System.out.println(member.getUserEmail());
@@ -159,12 +161,13 @@ public class MemberDAO extends JDBCconnection {
             rs = psmt.executeQuery();
 
             if(rs.next()){
-                member.setUserNo(rs.getInt("user_no"));
-                member.setUserEmail(rs.getString("user_email"));
+                mem.setUserNo(rs.getInt("user_no"));
+                mem.setUserEmail(rs.getString("user_email"));
+                mem.setUserName(rs.getString("user_name"));
             }
-            System.out.println(member.getUserEmail());
+            System.out.println(mem.getUserEmail());
 
-            return member;
+            return mem;
         }catch(SQLException e){
             e.printStackTrace();
             return null;

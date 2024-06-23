@@ -57,9 +57,15 @@ public class LoginServlet extends HttpServlet {
 
         member = memberService.fnLogin(member);
 
+        if(member == null){
+            request.setAttribute("message","로그인에 실패하였습니다.");
+            response.sendRedirect(request.getContextPath()+"/web");
+        }
+
         HttpSession session = request.getSession();
         session.setAttribute("user_no",member.getUserNo());
         session.setAttribute("user_id",member.getUserEmail());
+        session.setAttribute("user_name",member.getUserName());
 
         request.setAttribute("message","로그인에 성공하였습니다.");
         response.sendRedirect(request.getContextPath()+"/web");

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="3d8b65c8-fa91-4220-877d-c82f1f7d40cc" name="vm01">
+        <fileTransfer rootFolder="/home/mncvc" accessType="SFTP" host="192.168.0.31" port="22" sshConfigId="7bf3795b-6e27-4dbc-98da-7d6f98a87cc2" sshConfig="root@192.168.0.31:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" isUseSudo="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

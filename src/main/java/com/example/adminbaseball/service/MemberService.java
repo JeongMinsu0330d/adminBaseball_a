@@ -63,6 +63,10 @@ public class MemberService {
         try{
             member = memberDao.getMember(member);
 
+            if(member == null){
+                return null;
+            }
+
             return member;
         }catch(Exception e){
             e.printStackTrace();

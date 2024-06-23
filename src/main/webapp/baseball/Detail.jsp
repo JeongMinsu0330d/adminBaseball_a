@@ -48,7 +48,7 @@
     </style>
     <script>
         function fnReservation(gameCode){
-            let path = "<%=request.getContextPath()%>/web/Reservation.jsp?gameCode="+gameCode;
+            let path = "<%=request.getContextPath()%>/baseball/Reservation.jsp?gameCode="+gameCode;
             window.open(path,"_blank","width=800, height=600")
 
         }

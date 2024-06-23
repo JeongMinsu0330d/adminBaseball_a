@@ -86,8 +86,6 @@
             }
             console.log(chargeType);
 
-
-
         }
 
     </script>

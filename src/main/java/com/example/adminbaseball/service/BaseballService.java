@@ -4,6 +4,7 @@ import com.example.adminbaseball.TeamVo;
 import com.example.adminbaseball.admin_model.GameVo;
 import com.example.adminbaseball.common.DateFunction;
 import com.example.adminbaseball.common.JDBCconnection;
+import com.example.adminbaseball.model.Coupon;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -172,6 +173,64 @@ public class BaseballService {
             return null;
         }
     }
+    public List<Coupon> fnGetCoupon(int userNo){
+        JDBCconnection jdbc = new JDBCconnection();
+//        초기 준비 세팅
+        Connection CBaseballDbMaster = jdbc.CBaseBallMaster;
+        PreparedStatement pstmtCoupon = null;
+        ResultSet rsCoupon = null;
 
+        List<Coupon> coupons = new ArrayList<>();
+        try{
+            String qrySelectCoupon = "SELECT a.coupon_no, a.discount_price, b.coupon_name FROM discount_coupon_log as a LEFT JOIN discount_coupon_list as b ON (a.coupon_no = b.coupon_code) WHERE a.use_flag = 'n' AND a.user_no = ?";
+
+            pstmtCoupon = CBaseballDbMaster.prepareStatement(qrySelectCoupon);
+            pstmtCoupon.setInt(1,userNo);
+
+            rsCoupon = pstmtCoupon.executeQuery();
+
+            while(rsCoupon.next()){
+                Coupon coupon = new Coupon();
+                coupon.setCouponNo(rsCoupon.getString("coupon_no"));
+                coupon.setCouponName(rsCoupon.getString("coupon_name"));
+                coupon.setDiscountPrice(rsCoupon.getInt("discount_price"));
+
+                coupons.add(coupon);
+            }
+            return coupons;
+        }catch(SQLException e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public int fnGetPoint(int userNo){
+        JDBCconnection jdbc = new JDBCconnection();
+//        초기 준비 세팅
+        Connection CBaseballDbMaster = jdbc.CBaseBallMaster;
+        PreparedStatement pstmtPoint = null;
+        ResultSet rsPoint = null;
+        int point = 0;
+        try{
+            String qrySelectMyPoint = "SELECT mileage FROM mileage_list WHERE user_no = ? AND mileage_type = 'p' limit 1";
+
+            pstmtPoint = CBaseballDbMaster.prepareStatement(qrySelectMyPoint);
+            pstmtPoint.setInt(1,userNo);
+            rsPoint = pstmtPoint.executeQuery();
+
+            if(rsPoint.next()){
+                point = rsPoint.getInt("mileage");
+            }
+
+            return point;
+        }catch(SQLException e){
+            e.printStackTrace();
+            return 0;
+        }
+
+    }
+public void paymentReservation(){
+
+}
 
 }

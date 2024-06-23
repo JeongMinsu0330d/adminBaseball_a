@@ -46,22 +46,27 @@ public class SignUpServlet extends HttpServlet {
         String userAddress = request.getParameter("userAddress");
         String userBirth= request.getParameter("userBirth");
         try{
-        if(!serviceAgree.equals("on") || !privateAgree.equals("on")){
-            throw new Exception();
-        }
-        MemberService memberService = new MemberService();
-        Member member = new Member(userId,password,userName,userAddress,userBirth,serviceAgree,privateAgree);
+            if(!serviceAgree.equals("on") || !privateAgree.equals("on")){
+                throw new Exception();
+            }
+            MemberService memberService = new MemberService();
+            Member member = new Member(userId,password,userName,userBirth,userAddress,serviceAgree,privateAgree);
 
 
-            memberService.fnInsertMember(member);
+            if(!memberService.fnInsertMember(member)){
+                throw new Exception();
+            }
+
+            //coupon 발급
 
             message = "회원 가입에 성공 하였습니다.";
             request.setAttribute("message", message);
-            request.getRequestDispatcher("/web").forward(request, response);
+            response.sendRedirect(request.getContextPath()+"/web");
         }catch(Exception e){
+
             message = "회원 가입에 실패 하였습니다.";
             request.setAttribute("message", message);
-            response.sendRedirect("/baseball/member/SignUp.jsp");
+            response.sendRedirect(request.getContextPath()+"/web/signup");
 
         }
     }

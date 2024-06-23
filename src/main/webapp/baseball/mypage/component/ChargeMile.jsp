@@ -53,7 +53,7 @@
 
         function charge(){
              let payPrice = document.querySelector('input[name="price"]:checked').value;
-            window.open("<%= request.getContextPath()%>/web/mypage/component/Charge.jsp?userNo=<%=userNo%>&paymentMethod=<%=chargeType%>&chargeMoney="+payPrice,"width=500,height=500")
+            window.location.href = "<%= request.getContextPath()%>/baseball/mypage/component/Charge.jsp?userNo=<%=userNo%>&paymentMethod=<%=chargeType%>&chargeMoney="+payPrice;
 
             console.log(isCharge);
             if(isCharge) {
